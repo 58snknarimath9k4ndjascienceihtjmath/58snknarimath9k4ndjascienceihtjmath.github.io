@@ -1399,17 +1399,106 @@ const TMDB_IMG_BACKDROP = "https://image.tmdb.org/t/p/w1280";
    All functions receive: (id, isTV, season, episode)
 =========================================================== */
 const SERVERS = {
-  '1':{name:'AutoEmbed Test', url:(id,tv,s,e)=> tv ? `https://test.autoembed.cc/embed/tv/${id}/${s}/${e}?autoplay=true` : `https://test.autoembed.cc/embed/movie/${id}?autoplay=true`},
-  '2':{name:'AutoEmbed Player', url:(id,tv,s,e)=> tv ? `https://player.autoembed.cc/embed/tv/${id}/${s}/${e}` : `https://player.autoembed.cc/embed/movie/${id}`},
-  '3':{name:'Flixy', url:(id,tv,s,e)=> tv ? `https://player.vidify.top/embed/tv/${id}/${s}/${e}?poster=true&autoPlay=true` : `https://player.vidify.top/embed/movie/${id}?poster=true&autoPlay=true`},
-  '4':{name:'VidSrc.to', url:(id,tv,s,e)=> tv ? `https://vidsrc.to/embed/tv/${id}/${s}/${e}` : `https://vidsrc.to/embed/movie/${id}`},
-  '5':{name:'2Embed', url:(id,tv,s,e)=> tv ? `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}` : `https://www.2embed.cc/embed/${id}`},
-  '6':{name:'MultiEmbed', url:(id,tv,s,e)=> tv ? `https://multiembed.mov/?video_id=${id}&tmdb=1&s=${s}&e=${e}` : `https://multiembed.mov/?video_id=${id}&tmdb=1`},
-  '7':{name:'Embed.su', url:(id,tv,s,e)=> tv ? `https://embed.su/embed/tv/${id}/${s}/${e}` : `https://embed.su/embed/movie/${id}`},
-  '8':{name:'VidSrc.xyz', url:(id,tv,s,e)=> tv ? `https://vidsrc.xyz/embed/tv?tmdb=${id}&season=${s}&episode=${e}` : `https://vidsrc.xyz/embed/movie?tmdb=${id}`},
-  '9':{name:'VidSrc.me', url:(id,tv,s,e)=> tv ? `https://vidsrc.me/embed/tv?tmdb=${id}&season=${s}&episode=${e}` : `https://vidsrc.me/embed/movie?tmdb=${id}`},
-  '10':{name:'VidSrc.in', url:(id,tv,s,e)=> tv ? `https://vidsrc.in/embed/tv?tmdb=${id}&season=${s}&episode=${e}` : `https://vidsrc.in/embed/movie?tmdb=${id}`},
-  '11':{name:'VSembed', url:(id,tv,s,e)=> tv ? `https://vsembed.ru/embed/tv/${id}/${s}/${e}` : `https://vsembed.ru/embed/movie/${id}`},
+  '1': {
+    name: 'VidSrc.to',
+    url: (id, tv, s, e) => tv ? `https://vidsrc.to/embed/tv/${id}/${s}/${e}` : `https://vidsrc.to/embed/movie/${id}`
+  },
+  '2': {
+    name: 'VidSrc.me',
+    url: (id, tv, s, e) => tv ? `https://vidsrc.me/embed/tv?tmdb=${id}&season=${s}&episode=${e}` : `https://vidsrc.me/embed/movie?tmdb=${id}`
+  },
+  '3': {
+    name: 'VidSrc.cc',
+    url: (id, tv, s, e) => tv ? `https://vidsrc.cc/v2/embed/tv/${id}/${s}/${e}` : `https://vidsrc.cc/v2/embed/movie/${id}`
+  },
+  '4': {
+    name: 'VidSrc.xyz',
+    url: (id, tv, s, e) => tv ? `https://vidsrc.xyz/embed/tv/${id}/${s}/${e}` : `https://vidsrc.xyz/embed/movie/${id}`
+  },
+  '5': {
+    name: 'VidLink.pro',
+    url: (id, tv, s, e) => tv ? `https://vidlink.pro/tv/${id}/${s}/${e}` : `https://vidlink.pro/movie/${id}`
+  },
+  '6': {
+    name: 'VidFast.pro',
+    url: (id, tv, s, e) => tv ? `https://vidfast.pro/embed/tv/${id}/${s}/${e}` : `https://vidfast.pro/embed/movie/${id}`
+  },
+  '7': {
+    name: 'Embed.su',
+    url: (id, tv, s, e) => tv ? `https://embed.su/embed/tv/${id}/${s}/${e}` : `https://embed.su/embed/movie/${id}`
+  },
+  '8': {
+    name: 'AutoEmbed.cc',
+    url: (id, tv, s, e) => tv ? `https://player.autoembed.cc/embed/tv/${id}/${s}/${e}` : `https://player.autoembed.cc/embed/movie/${id}`
+  },
+  '9': {
+    name: '2Embed.cc',
+    url: (id, tv, s, e) => tv ? `https://www.2embed.cc/embedtv/${id}&s=${s}&e=${e}` : `https://www.2embed.cc/embed/${id}`
+  },
+  '10': {
+    name: 'SmashyStream',
+    url: (id, tv, s, e) => tv ? `https://embed.smashystream.com/playere.php?tmdb=${id}&s=${s}&e=${e}` : `https://embed.smashystream.com/playere.php?tmdb=${id}`
+  },
+  '11': {
+    name: 'MultiEmbed / SuperEmbed',
+    url: (id, tv, s, e) => tv ? `https://multiembed.mov/directstream.php?video_id=${id}&s=${s}&e=${e}` : `https://multiembed.mov/directstream.php?video_id=${id}`
+  },
+  '12': {
+    name: 'MovieAPI.tech',
+    url: (id, tv, s, e) => tv ? `https://movieapi.tech/embed/tv/${id}/${s}/${e}` : `https://movieapi.tech/embed/movie/${id}`
+  },
+  '13': {
+    name: 'NontonGo',
+    url: (id, tv, s, e) => tv ? `https://www.nontongo.win/embed/tv/${id}/${s}/${e}` : `https://www.nontongo.win/embed/movie/${id}`
+  },
+  '14': {
+    name: 'VidCore',
+    url: (id, tv, s, e) => tv ? `https://vidcore.org/embed/series/${id}/${s}/${e}` : `https://vidcore.org/embed/movie/${id}`
+  },
+  '15': {
+    name: '111Movies',
+    url: (id, tv, s, e) => tv ? `https://111movies.com/tv/${id}/${s}/${e}` : `https://111movies.com/movie/${id}`
+  },
+  '16': {
+    name: 'MovieE',
+    url: (id, tv, s, e) => tv ? `https://moviee.tv/embed/tv/${id}/${s}/${e}` : `https://moviee.tv/embed/movie/${id}`
+  },
+  '17': {
+    name: 'Vidsrc.net',
+    url: (id, tv, s, e) => tv ? `https://vidsrc.net/embed/tv/${id}/${s}/${e}` : `https://vidsrc.net/embed/movie/${id}`
+  },
+  '18': {
+    name: 'Vidbinge',
+    url: (id, tv, s, e) => tv ? `https://vidbinge.dev/embed/tv/${id}/${s}/${e}` : `https://vidbinge.dev/embed/movie/${id}`
+  },
+  '19': {
+    name: 'StreamBucket',
+    url: (id, tv, s, e) => tv ? `https://streambucket.net/embed/tv/${id}/${s}/${e}` : `https://streambucket.net/embed/movie/${id}`
+  },
+  '20': {
+    name: 'VidSrc.icu',
+    url: (id, tv, s, e) => tv ? `https://vidsrc.icu/embed/tv/${id}/${s}/${e}` : `https://vidsrc.icu/embed/movie/${id}`
+  },
+  '21': {
+    name: 'RiveStream',
+    url: (id, tv, s, e) => tv ? `https://rive.stream/embed?type=tv&id=${id}&season=${s}&episode=${e}` : `https://rive.stream/embed?type=movie&id=${id}`
+  },
+  '22': {
+    name: 'MoviesAPI.club',
+    url: (id, tv, s, e) => tv ? `https://moviesapi.club/tv/${id}-${s}-${e}` : `https://moviesapi.club/movie/${id}`
+  },
+  '23': {
+    name: 'Frembed',
+    url: (id, tv, s, e) => tv ? `https://frembed.live/api/serie.php?id=${id}&s=${s}&e=${e}` : `https://frembed.live/api/film.php?id=${id}`
+  },
+  '24': {
+    name: 'NontonGratis',
+    url: (id, tv, s, e) => tv ? `https://nontongratis.win/embed/tv/${id}/${s}/${e}` : `https://nontongratis.win/embed/movie/${id}`
+  },
+  '25': {
+    name: 'Cinepro',
+    url: (id, tv, s, e) => tv ? `https://cinepro.cc/embed/tv/${id}/${s}/${e}` : `https://cinepro.cc/embed/movie/${id}`
+  }
 };
 
 // Builds the ordered fallback list of playable URLs for a resolved movie/tv/anime object.
